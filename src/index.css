@@ -1,13 +1,80 @@
+/* src/index.css or src/App.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+
+
+/* Apply the font to specific elements or globally */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'D-DIN', sans-serif;
+  font-family: 'D-DIN Condensed', sans-serif;
+  font-family: 'D-DIN Exp', sans-serif;
+  /* background: rgb(193,185,237);
+background: linear-gradient(100deg, rgba(193,185,237,1) 0%, rgba(246,213,211,1) 100%); */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#gradient-canvas {
+  width: 100%;
+  height: 100%;
+  --gradient-color-1: #c3e4ff;
+  --gradient-color-2: #6ec3f4;
+  --gradient-color-3: #eae2ff;
+  --gradient-color-4: #b9beff;
 }
+
+
+.stroke {
+
+  -webkit-text-stroke: 3px;
+  -webkit-text-stroke-color: #ffffff;
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes moveright {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@layer components {
+  .navtext {
+    @apply text-purple-500 text-lg drop-shadow-[0_0_10px_rgba(128,90,213,0.8)] hover:drop-shadow-[0_0_15px_rgba(128,90,213,1)] hover:-translate-y-2 font-thin transition-all duration-500 ease-out;
+ }
+
+
+  .homet {
+    @apply text-[7vw] z-[600] font-semibold stroke text-transparent
+  }
+
+  .homet2 {
+    @apply text-[7vw] z-[600] font-semibold text-white
+  }
+
+  .contactinp {
+    @apply w-full p-[1.7vh] rounded-sm border-white border-2 bg-transparent text-white text-xl drop-shadow-lg
+  }
+  .contactsp{
+    @apply text-white font-semibold text-xl uppercase
+  }
+  .Pimage{
+    @apply min-h-[4.35vw] hover:opacity-50 duration-150 ease-linear
+  }
+}
+
+
+;
