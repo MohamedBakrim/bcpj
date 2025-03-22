@@ -7,6 +7,6 @@
 
 @layer components {
   .navtext {
-    @apply text-purple-500 text-lg drop-shadow-[0_0_10px_rgba(128,90,213,0.8)] hover:drop-shadow-[0_0_15px_rgba(128,90,213,1)] hover:-translate-y-2 font-thin transition-all duration-500 ease-out;
+    @apply text-purple-500 text-lg drop-shadow-2xl hover:-translate-y-2 font-thin focus:text-white  hover:scale-105 transition-all duration-500 ease-out;
  }
 };
