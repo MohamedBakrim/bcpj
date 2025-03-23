@@ -9,4 +9,7 @@
   .navtext {
     @apply text-purple-500 text-lg drop-shadow-2xl hover:-translate-y-2 font-thin focus:text-white  hover:scale-105 transition-all duration-500 ease-out;
  }
+ .navtext2 {
+  @apply text-white text-[0.9vw] drop-shadow-2xl hover:-translate-y-2 font-thin focus:text-purple-500  hover:scale-105 transition-all duration-500 ease-out;
+}
 };
