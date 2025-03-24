@@ -78,6 +78,28 @@ const votsc = () => {
           </div>
           <p className='text-gray-500 text-xs mt-3'>$500K Vol.</p>
         </div>
+        <div className='w-full h-80 bg-[#1a0b2e] rounded-lg shadow-md p-5 border border-[#a78bfa]'>
+          <h2 className='text-[#a78bfa] text-xl font-bold'>Third Vote</h2>
+          <p className='text-gray-400 text-sm'>Quick summary...</p>
+          <div className='mt-4'>
+            <div className='flex justify-between items-center'>
+              <span className='text-[#c084fc] text-lg font-bold'>Yes</span>
+              <span className='text-white text-lg'>72%</span>
+              <button className='bg-[#7c3aed] text-white px-4 py-1 rounded-md'>
+                Buy Yes
+              </button>
+            </div>
+            <div className='flex justify-between items-center mt-2'>
+              <span className='text-[#9333ea] text-lg font-bold'>No</span>
+              <span className='text-white text-lg'>28%</span>
+              <button className='bg-[#581c87] text-white px-4 py-1 rounded-md'>
+                Buy No
+              </button>
+            </div>
+          </div>
+
+          <p className='text-gray-500 text-xs mt-3'>$500K Vol.</p>
+        </div>
       </div>
     </div>
   );
