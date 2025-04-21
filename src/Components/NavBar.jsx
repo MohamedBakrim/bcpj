@@ -1,9 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { BrowserProvider } from 'ethers'; // Ethers v6 import
 
 const Navbar = () => {
   const [isnav, setisnav] = useState(false);
+  const [walletAddress, setWalletAddress] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const connectWallet = async () => {
+    if (typeof window.ethereum !== 'undefined') {
+      try {
+        const provider = new BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        const address = await signer.getAddress();
+        setWalletAddress(address);
+      } catch (err) {
+        console.error("Wallet connection failed:", err);
+      }
+    } else {
+      alert("MetaMask is not installed. Please install it to connect.");
+    }
+  };
+
+  const truncateAddress = (address) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
 
   const handlescroll = () => {
     const pageht = 50;
@@ -21,6 +43,15 @@ const Navbar = () => {
     };
   }, []);
 
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const disconnectWallet = () => {
+    setWalletAddress(null);
+    setDropdownOpen(false);
+  };
+
   return (
     <div>
       {isnav && <Navscroll />}
@@ -29,12 +60,39 @@ const Navbar = () => {
           <Link to="/" className="navtext">Home</Link>
           <Link to="/shop" className="navtext">Why Us</Link>
           <Link to="/contact-me" className="navtext">First Vote</Link>
-          <Link to="/Product" className="navtext">nav4</Link>
+          <Link to="/CreateVote" className="navtext">Create Vote</Link>
         </nav>
-        <button className="shadow-lg shadow-purple-500 border-2 text-purple-500 px-4 py-2 rounded-md focus:bg-purple-950 border-purple-500 hover:scale-105 transition-all duration-300">
-          Connect
-        </button>
-      </div></div>
+
+        {walletAddress ? (
+          <div className="relative">
+            <button
+              onClick={toggleDropdown}
+              className="bg-transparent border-2 border-purple-500 cursor-pointer shadow-lg shadow-purple-500 text-purple-800 px-4 py-2 rounded-md font-mono"
+            >
+              {truncateAddress(walletAddress)}
+            </button>
+
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-2 rounded-md shadow-md z-50">
+                <button
+                  onClick={disconnectWallet}
+                  className="px-4 py-2 text-purple-500 hover:bg-purple-500 hover:text-white bg-white rounded-md transition-all duration-300 w-full text-left"
+                >
+                  Disconnect
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <button
+            onClick={connectWallet}
+            className="shadow-lg shadow-purple-500 border-2 text-purple-500 px-4 py-2 rounded-md focus:bg-purple-950 border-purple-500 hover:scale-105 transition-all duration-300"
+          >
+            Connect
+          </button>
+        )}
+      </div>
+    </div>
   );
 };
 
@@ -57,7 +115,7 @@ const Navscroll = () => {
             <Link to="/" className="navtext2">Home</Link>
             <Link to="/shop" className="navtext2">Why Us</Link>
             <Link to="/contact-me" className="navtext2">Contact Me</Link>
-            <Link to="/Product" className="navtext2">Product</Link>
+            <Link to="/CreateVote" className="navtext2">CreateVote</Link>
           </nav>
         </div>
       </div>

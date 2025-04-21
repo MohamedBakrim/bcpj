@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import bgVideo from '../assets/videos/bg.mp4';
+import { ethers } from 'ethers';
 
 const Home = () => {
+  
   return (
     <div className="relative h-screen w-full flex flex-col items-center justify-center text-center">
 
