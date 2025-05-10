@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "./Contract";
-import { useNavigate } from "react-router-dom"; // import navigate
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const CreateVote = () => {
   const [title, setTitle] = useState("");
@@ -41,71 +42,101 @@ const CreateVote = () => {
   };
 
   return (
-    <div className="w-vw h-screen flex bg-black justify-center items-center ">
-      <div className="p-6 border w-1/3 rounded-xl h-1/2 bg-purple-950 border-purple-400 shadow-2xl  shadow-purple-500">
-        <h2 className="text-2xl font-bold mb-4 text-white font-MAIN">Create a New Poll</h2>
-
-        <input
-          type="text"
-          placeholder="Poll title"
-          className="w-full p-2 mb-4 border rounded"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-
-        <div className="flex space-x-10 w-full">
-          {options.map((opt, i) => (
-            <input
-              key={i}
-              type="text"
-              placeholder={`Option ${i + 1}`}
-              className="w-full p-2 mb-2 border rounded"
-              value={opt}
-              onChange={(e) => handleOptionChange(i, e.target.value)}
-            />
-          ))}
-        </div>
-
-        <button
-          className="bg-purple-400 text-white px-4 py-2 rounded mb-4"
-          onClick={addOption}
+    <div className="min-h-screen bg-gradient-to-b from-black to-[#1a0b2e]">
+      <div className="w-full min-h-screen flex items-center justify-center px-4 py-24 pt-28">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md p-8 border-2 rounded-2xl shadow-2xl bg-[#1a0b2e]/90 border-purple-500 backdrop-blur-sm"
         >
-          ➕ Add Option
-        </button>
+          <h2 className="text-3xl font-bold mb-6 text-purple-400 font-MAIN text-center">Create a New Poll</h2>
 
-        <div className="mb-4">
-          <label className="block mb-1 text-white font-MAIN">Start Time:</label>
-          <input
-            type="datetime-local"
-            className="w-full p-2 border rounded"
-            value={startTime}
-            onChange={(e) => setStartTime(e.target.value)}
-          />
-        </div>
+          <div className="space-y-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Poll title"
+                className="w-full p-3 pl-4 bg-[#2d1b4e] text-white border border-purple-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
 
-        <div className="mb-4">
-          <label className="block mb-1 text-white font-MAIN">End Time:</label>
-          <input
-            type="datetime-local"
-            className="w-full p-2 border rounded"
-            value={endTime}
-            onChange={(e) => setEndTime(e.target.value)}
-          />
-        </div>
-        <div className="flex space-x-9 mt-10"><button
-          className="bg-purple-500 text-white px-4 py-2 rounded w-full "
-          onClick={handleCreatePoll}
-        >
-          Create Poll
-        </button>
+            <div className="space-y-3 my-4">
+              {options.map((opt, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.1 }}
+                  className="relative"
+                >
+                  <input
+                    type="text"
+                    placeholder={`Option ${i + 1}`}
+                    className="w-full p-3 pl-4 bg-[#2d1b4e] text-white border border-purple-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300"
+                    value={opt}
+                    onChange={(e) => handleOptionChange(i, e.target.value)}
+                  />
+                </motion.div>
+              ))}
+            </div>
 
-        <button
-          className="bg-purple-500 text-white px-4 py-2 rounded w-full"
-          onClick={handleCancel}
-        >
-          Annuler
-        </button></div>
-        
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-4 py-2 rounded-lg w-full mb-4 shadow-md shadow-purple-900/50 transition-all duration-300 flex items-center justify-center space-x-2"
+              onClick={addOption}
+            >
+              <span>➕</span>
+              <span>Add Option</span>
+            </motion.button>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="block text-purple-300 text-sm font-medium mb-1">Start Time:</label>
+                <input
+                  type="datetime-local"
+                  className="w-full p-3 bg-[#2d1b4e] text-white border border-purple-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300"
+                  value={startTime}
+                  onChange={(e) => setStartTime(e.target.value)}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-purple-300 text-sm font-medium mb-1">End Time:</label>
+                <input
+                  type="datetime-local"
+                  className="w-full p-3 bg-[#2d1b4e] text-white border border-purple-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300"
+                  value={endTime}
+                  onChange={(e) => setEndTime(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-6">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="bg-gradient-to-r from-[#7c3aed] to-[#9333ea] text-white px-6 py-3 rounded-lg font-medium shadow-lg shadow-purple-900/50 transition-all duration-300 flex items-center justify-center space-x-2 flex-1"
+                onClick={handleCreatePoll}
+              >
+                <span>🚀</span>
+                <span>Create Poll</span>
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="bg-[#2d1b4e] text-purple-400 border border-purple-700 px-6 py-3 rounded-lg font-medium shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 flex-1"
+                onClick={handleCancel}
+              >
+                <span>Cancel</span>
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
