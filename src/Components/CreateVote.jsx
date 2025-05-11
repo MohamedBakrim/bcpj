@@ -42,7 +42,7 @@ const CreateVote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-[#1a0b2e]">
+    <div className="min-h-screen bg-gradient-to-b from-black to-[#1a0b2e] pb-16">
       <div className="w-full min-h-screen flex items-center justify-center px-4 py-24 pt-28">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

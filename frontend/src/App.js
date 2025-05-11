@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './Components/NavBar';
+import Footer from './Components/Footer';
 import Home from './Components/Home';
 import Sp from './Components/sp';
 import Votsc from './Components/votsc';
@@ -22,6 +23,7 @@ function App() {
         <Route path="/CreateVote" element={<CreateVote />} />
         <Route path="/ShowPolls" element={<ShowPolls />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

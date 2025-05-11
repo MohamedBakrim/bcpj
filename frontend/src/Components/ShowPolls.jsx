@@ -734,8 +734,8 @@ export default function ShowPolls() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-[#1a0b2e]">
-      <div className="container  mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-black to-[#1a0b2e] pb-16">
+      <div className="container mx-auto px-4 py-8">
         <div className="mt-16 flex flex-col items-center mb-8">
           <h2 className="text-3xl font-bold text-purple-400 mb-2 text-center">Blockchain Voting Dashboard</h2>
           <p className="text-gray-300 mb-6">Cast your vote on active polls or view results</p>
